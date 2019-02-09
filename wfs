@@ -216,7 +216,8 @@ route_add () {
 
 switch_to_primary () {
 
-    route_del "$SECONDARY_GW"
+    #route_del "$SECONDARY_GW"
+    route del -net 0.0.0.0 dev ppp0
     route_add "$PRIMARY_GW"
     ACTIVE_CONNECTION="PRIMARY"
 }
@@ -224,7 +225,7 @@ switch_to_primary () {
 switch_to_secondary () {
 
     route_del "$PRIMARY_GW"
-    route_add "$SECONDARY_GW"
+    route add -net 0.0.0.0 dev ppp0
     ACTIVE_CONNECTION="SECONDARY"
 }
 
